@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
+import java.util.concurrent.TimeUnit;
 import com.browserstack.local.Local;
 
 import org.json.simple.JSONObject;
@@ -66,6 +66,7 @@ public class BrowserStackTestNGTest {
 
         driver = new RemoteWebDriver(
                 new URL("http://" + username + ":" + accessKey + "@" + config.get("server") + "/wd/hub"), capabilities);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @AfterMethod(alwaysRun = true)

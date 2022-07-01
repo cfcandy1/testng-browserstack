@@ -1,6 +1,7 @@
 package com.browserstack;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import org.testng.Assert;
@@ -10,22 +11,48 @@ public class SingleTest extends BrowserStackTestNGTest {
 
     @Test
     public void test() throws Exception {
-    	  // navigate to bstackdemo
-        driver.get("https://www.bstackdemo.com");
-        
-        // Check the title
-        Assert.assertTrue(driver.getTitle().matches("StackDemo"));
-        
-        // Save the text of the product for later verify
-        String productOnScreenText = driver.findElement(By.xpath("//*[@id=\"1\"]/p")).getText();
-        // Click on add to cart button
-        driver.findElement(By.xpath("//*[@id=\"1\"]/div[4]")).click();
-        
-        // See if the cart is opened or not
-        Assert.assertTrue(driver.findElement(By.className("float-cart__content")).isDisplayed());
-        
-        // Check the product inside the cart is same as of the main page
-        String productOnCartText = driver.findElement(By.xpath("//*[@id=\"__next\"]/div/div/div[2]/div[2]/div[2]/div/div[3]/p[1]")).getText();
-        Assert.assertEquals(productOnScreenText, productOnCartText);
+
+        // navigate to ADUK
+        driver.get("https://staging.admiralcasino.co.uk/en");
+
+        // call basic authentication method
+        basicAuthentication();
+
+        // call accept cookies method
+        acceptCookies();
+
+        Thread.sleep(50);
+
+        // login with user
+        driver.findElement(By.xpath("//a[@class='link link-main-header']"))
+                .click();
+        driver.findElement(By.id("nickname"))
+                .sendKeys("stagtestrmg1");
+        driver.findElement(By.id("password"))
+                .sendKeys("qwertz12strmg");
+        driver.findElement(By.xpath("//*[@id=\"dialog\"]/div/div[2]/div/app-login/form/div/button"))
+                .click();
+
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+
+        // verify login success
+        if (driver.findElement(By.xpath("//div[@class='item item-userpic ng-star-inserted']"))
+                .isDisplayed()) {
+            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\", \"reason\": \"Login successful!\"}}");
+        } else {
+            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"failed\", \"reason\": \"Login unsuccessful\"}}");
+        }
+    }
+    public void basicAuthentication(){
+        driver.findElement(By.id("user"))
+                .sendKeys("admin");
+        driver.findElement(By.id("password"))
+                .sendKeys("matrix4215");
+        driver.findElement(By.xpath("/html/body/form/input[4]"))
+                .click();
+    }
+    public void acceptCookies(){
+        driver.findElement(By.xpath("//button[@class='optanon-allow-all accept-cookies-button']"))
+                .click();
     }
 }
