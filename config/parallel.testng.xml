@@ -6,7 +6,6 @@
         <parameter name="environment" value="env1"/>
         <classes>
             <class name="com.browserstack.SingleTest"/>
-            <class name="com.browserstack.InvalidCredentialsTest"/>
         </classes>
     </test>
 
@@ -15,7 +14,6 @@
         <parameter name="environment" value="env2"/>
         <classes>
             <class name="com.browserstack.SingleTest"/>
-            <class name="com.browserstack.InvalidCredentialsTest"/>
         </classes>
     </test>
 
@@ -24,7 +22,6 @@
         <parameter name="environment" value="env3"/>
         <classes>
             <class name="com.browserstack.SingleTest"/>
-            <class name="com.browserstack.InvalidCredentialsTest"/>
         </classes>
     </test>
 
@@ -33,7 +30,6 @@
         <parameter name="environment" value="env4"/>
         <classes>
             <class name="com.browserstack.SingleTest"/>
-            <class name="com.browserstack.InvalidCredentialsTest"/>
         </classes>
     </test>
 </suite>
