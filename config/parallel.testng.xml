@@ -24,12 +24,4 @@
             <class name="com.browserstack.SingleTest"/>
         </classes>
     </test>
-
-    <test name="SingleTestEnv4">
-        <parameter name="config" value="parallel.conf.json"/>
-        <parameter name="environment" value="env4"/>
-        <classes>
-            <class name="com.browserstack.SingleTest"/>
-        </classes>
-    </test>
 </suite>
