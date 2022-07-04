@@ -2,9 +2,6 @@ package com.browserstack;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class SingleTest extends BrowserStackTestNGTest {
@@ -21,7 +18,7 @@ public class SingleTest extends BrowserStackTestNGTest {
         // call accept cookies method
         acceptCookies();
 
-        Thread.sleep(50);
+        Thread.sleep(1000);
 
         // login with user
         driver.findElement(By.xpath("//a[@class='link link-main-header']"))
