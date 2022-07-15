@@ -9,6 +9,8 @@ public class SingleTest extends BrowserStackTestNGTest {
     @Test
     public void test() throws Exception {
 
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+
         // navigate to ADUK
         driver.get("https://staging.admiralcasino.co.uk/en");
 
@@ -29,8 +31,6 @@ public class SingleTest extends BrowserStackTestNGTest {
                 .sendKeys("qwertz12strmg");
         driver.findElement(By.xpath("//*[@id=\"dialog\"]/div/div[2]/div/app-login/form/div/button"))
                 .click();
-
-        JavascriptExecutor jse = (JavascriptExecutor)driver;
 
         // verify login success
         if (driver.findElement(By.xpath("//div[@class='item item-userpic ng-star-inserted']"))
